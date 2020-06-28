@@ -16,13 +16,6 @@
                             </div>
                         </v-flex>
 
-                        <v-flex sm12>
-                            <label for="">Vendor</label>
-                            <el-select v-model="form.seller_id" filterable placeholder="type at least 3 characters" :loading="loading" style="width: 100%">
-                                <el-option v-for="item in sellers.data" :key="item.id" :label="item.name" :value="item.id">
-                                </el-option>
-                            </el-select>
-                        </v-flex>
                     </v-layout>
                 </v-container>
             </v-card-text>
