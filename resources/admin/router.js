@@ -43,7 +43,7 @@ const routes = [
     // { path: '/pos', component: myPos },
     { path: '/clients', component: myClients },
     { path: '/groups', component: myGroup },
-    { path: '/sales', component: mySales },
+    { path: '/', component: mySales },
     // { path: '/drawer', component: myDrawer },
     { path: '/vendors', component: mySellers },
     // { path: '/discount', component: myDiscount },
