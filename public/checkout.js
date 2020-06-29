@@ -1727,152 +1727,165 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "VCard",
-        {
-          staticStyle: {
-            padding: "20px",
-            width: "80%",
-            margin: "auto",
-            "box-shadow":
-              "7px 7px 8px -4px rgb(210, 225, 246),0 12px 17px 2px rgb(210, 225, 246),0 5px 22px 4px rgb(210, 225, 246) !important",
-            "margin-top": "200px"
-          }
-        },
-        [
-          _c(
-            "v-stepper",
+      _vm.user
+        ? _c(
+            "VCard",
             {
-              attrs: { vertical: "" },
-              model: {
-                value: _vm.e6,
-                callback: function($$v) {
-                  _vm.e6 = $$v
-                },
-                expression: "e6"
+              staticStyle: {
+                padding: "20px",
+                width: "80%",
+                margin: "auto",
+                "box-shadow":
+                  "7px 7px 8px -4px rgb(210, 225, 246),0 12px 17px 2px rgb(210, 225, 246),0 5px 22px 4px rgb(210, 225, 246) !important",
+                "margin-top": "200px"
               }
             },
             [
               _c(
-                "v-stepper-step",
-                { attrs: { complete: _vm.e6 > 1, step: "1" } },
-                [_vm._v("User information")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-stepper-content",
-                { staticStyle: { background: "#fff" }, attrs: { step: "1" } },
+                "v-stepper",
+                {
+                  attrs: { vertical: "" },
+                  model: {
+                    value: _vm.e6,
+                    callback: function($$v) {
+                      _vm.e6 = $$v
+                    },
+                    expression: "e6"
+                  }
+                },
                 [
                   _c(
-                    "v-card",
+                    "v-stepper-step",
+                    { attrs: { complete: _vm.e6 > 1, step: "1" } },
+                    [_vm._v("User information")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-stepper-content",
                     {
-                      staticClass: "mb-5",
-                      attrs: { color: "white lighten-1" }
+                      staticStyle: { background: "#fff" },
+                      attrs: { step: "1" }
                     },
                     [
-                      _c("myAddress", {
-                        attrs: { user: _vm.user, form: _vm.form }
-                      })
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "mb-5",
+                          attrs: { color: "white lighten-1" }
+                        },
+                        [
+                          _c("myAddress", {
+                            attrs: { user: _vm.user, form: _vm.form }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary" },
+                          on: { click: _vm.goToStep2 }
+                        },
+                        [_vm._v("Continue")]
+                      )
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "primary" },
-                      on: { click: _vm.goToStep2 }
-                    },
-                    [_vm._v("Continue")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-stepper-step",
-                { attrs: { complete: _vm.e6 > 2, step: "2" } },
-                [_vm._v("Payment")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-stepper-content",
-                { staticStyle: { background: "#fff" }, attrs: { step: "2" } },
-                [
-                  _c(
-                    "v-card",
-                    {
-                      staticClass: "mb-5",
-                      attrs: { color: "white lighten-1" }
-                    },
-                    [_c("myPayment", { attrs: { account: _vm.account } })],
-                    1
+                    "v-stepper-step",
+                    { attrs: { complete: _vm.e6 > 2, step: "2" } },
+                    [_vm._v("Payment")]
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-btn",
+                    "v-stepper-content",
                     {
-                      attrs: { color: "primary" },
-                      on: { click: _vm.goToStep3 }
-                    },
-                    [_vm._v("Continue")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { flat: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.e6 = 1
-                        }
-                      }
-                    },
-                    [_vm._v("Back")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-stepper-step",
-                { attrs: { complete: _vm.e6 > 3, step: "3" } },
-                [_vm._v("Complete")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-stepper-content",
-                { staticStyle: { background: "#fff" }, attrs: { step: "3" } },
-                [
-                  _c(
-                    "v-card",
-                    {
-                      staticClass: "mb-5",
-                      attrs: { color: "white lighten-1" }
+                      staticStyle: { background: "#fff" },
+                      attrs: { step: "2" }
                     },
                     [
-                      _c("myComplete", {
-                        attrs: {
-                          account: _vm.account,
-                          user: _vm.user,
-                          form: _vm.form
-                        }
-                      })
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "mb-5",
+                          attrs: { color: "white lighten-1" }
+                        },
+                        [_c("myPayment", { attrs: { account: _vm.account } })],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "primary" },
+                          on: { click: _vm.goToStep3 }
+                        },
+                        [_vm._v("Continue")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { flat: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.e6 = 1
+                            }
+                          }
+                        },
+                        [_vm._v("Back")]
+                      )
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-btn",
+                    "v-stepper-step",
+                    { attrs: { complete: _vm.e6 > 3, step: "3" } },
+                    [_vm._v("Complete")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-stepper-content",
                     {
-                      attrs: { flat: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.e6 = 2
-                        }
-                      }
+                      staticStyle: { background: "#fff" },
+                      attrs: { step: "3" }
                     },
-                    [_vm._v("Back")]
+                    [
+                      _c(
+                        "v-card",
+                        {
+                          staticClass: "mb-5",
+                          attrs: { color: "white lighten-1" }
+                        },
+                        [
+                          _c("myComplete", {
+                            attrs: {
+                              account: _vm.account,
+                              user: _vm.user,
+                              form: _vm.form
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { flat: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.e6 = 2
+                            }
+                          }
+                        },
+                        [_vm._v("Back")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
@@ -1880,9 +1893,61 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      )
+        : _c(
+            "div",
+            { staticStyle: { padding: "20px 0", "margin-top": "200px" } },
+            [
+              _c(
+                "VCard",
+                {
+                  staticClass: "text-center",
+                  staticStyle: {
+                    padding: "20px",
+                    width: "80%",
+                    margin: "auto",
+                    "box-shadow":
+                      "7px 7px 8px -4px rgb(210, 225, 246),0 12px 17px 2px rgb(210, 225, 246),0 5px 22px 4px rgb(210, 225, 246) !important"
+                  }
+                },
+                [
+                  _c("VCardText", [
+                    _vm._v(
+                      "\n                You are not loged in! Please login to proceed.\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    { staticStyle: { width: "15%", margin: "auto" } },
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { text: "", href: "/login", color: "primary" }
+                        },
+                        [_vm._v("Login")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            text: "",
+                            href: "/register",
+                            color: "primary"
+                          }
+                        },
+                        [_vm._v("Sign up")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
     ],
     1
   )
