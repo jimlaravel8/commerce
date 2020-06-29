@@ -48,10 +48,12 @@
                     <v-col sm="6" md="4" lg="4">
                         <div class="widgets-wrap float-md-right">
                             <div class="widget-header  mr-3">
-                                <div class="icon icon-sm rounded-circle border">
-                                    <myCart />
-                                </div>
-                                <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
+                                <!-- <div class="icon icon-sm rounded-circle border"> -->
+                                    <v-badge color="green" :content="cart_count">
+                                        <myCart />
+                                    </v-badge>
+                                <!-- </div> -->
+                                <!-- <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span> -->
                             </div>
                             <div class="widget-header icontext">
                                 <div class="icon icon-sm rounded-circle border" v-if="user">
@@ -117,22 +119,22 @@ export default {
             this.scrollPosition = window.scrollY
         },
         getCart() {
-            if (this.user) {
-                var cookie_id = this.$store.state.auth.user.id
-            } else {
-                var rString = this.randomString(15, '0123456789');
-                if (this.$cookie.get('cart_session') == null) {
-                    this.$cookie.set('cart_session', rString);
-                }
-                var cookie_id = this.$cookie.get('cart_session')
-            }
+            // if (this.user) {
+            //     var cookie_id = this.$store.state.auth.user.id
+            // } else {
+            //     var rString = this.randomString(15, '0123456789');
+            //     if (this.$cookie.get('cart_session') == null) {
+            //         this.$cookie.set('cart_session', rString);
+            //     }
+            //     var cookie_id = this.$cookie.get('cart_session')
+            // }
 
             var payload = {
                 model: 'getCart',
-                id: cookie_id,
+                // id: cookie_id,
                 update: 'updateCartsList',
             }
-            this.$store.dispatch('getItem', payload)
+            this.$store.dispatch('getItems', payload)
         },
 
         getMenu() {
@@ -153,7 +155,6 @@ export default {
             this.$store.dispatch('getItems', payload)
         },
         get_cart_count() {
-
 
             var payload = {
                 model: 'cart_count',
@@ -194,22 +195,13 @@ export default {
         },
 
         update_cart(data) {
-            // console.log(data);
+            console.log(data);
             // var cart = data.cart
 
-            if (this.user) {
-                var cookie_id = this.$store.state.auth.user.id
-            } else {
-                var rString = this.randomString(15, '0123456789');
-                if (this.$cookie.get('cart_session') == null) {
-                    this.$cookie.set('cart_session', rString);
-                }
-                var cookie_id = this.$cookie.get('cart_session')
-            }
             // cart.quantity = data.order_qty
             var payload = {
                 model: 'update_cart',
-                id: cookie_id,
+                id: data.id,
                 data: data,
             }
             this.$store.dispatch('postItem', payload).then((res) => {
@@ -262,23 +254,23 @@ export default {
             // this.offsetTop = window.pageYOffset || document.documentElement.scrollTop;
         },
         flashCart(cart) {
-            if (this.user) {
-                var cookie_id = this.$store.state.auth.user.id
-            } else {
-                var rString = this.randomString(15, '0123456789');
-                if (this.$cookie.get('cart_session') == null) {
-                    this.$cookie.set('cart_session', rString);
-                }
-                var cookie_id = this.$cookie.get('cart_session')
-            }
+            // if (this.user) {
+            //     var cookie_id = this.$store.state.auth.user.id
+            // } else {
+            //     var rString = this.randomString(15, '0123456789');
+            //     if (this.$cookie.get('cart_session') == null) {
+            //         this.$cookie.set('cart_session', rString);
+            //     }
+            //     var cookie_id = this.$cookie.get('cart_session')
+            // }
 
             this.$store.dispatch('overlayAction', true)
             var payload = {
                 model: 'flashCart',
                 data: cart,
-                id: cookie_id
+                // id: cookie_id
             }
-            this.$store.dispatch('postItem', payload).then((res) => {
+            this.$store.dispatch('postItems', payload).then((res) => {
                 this.get_cart_total()
                 this.getCart()
                 this.get_cart_count()

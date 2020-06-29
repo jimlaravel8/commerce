@@ -136,7 +136,7 @@ export default {
             search: "",
             payload: {
                 model: 'product_table',
-                update_list: 'updateProductsList'
+                update: 'updateProductsList'
             },
             products_det: {
                 data: []
@@ -256,7 +256,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateProductsList'
+                update: 'updateProductsList'
             }
             this.$store.dispatch("nextPage", payload);
         }

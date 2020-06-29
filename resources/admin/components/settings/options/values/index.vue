@@ -157,7 +157,7 @@ export default {
 
             var payload = {
                 model: 'option_values',
-                update_list: 'updateOptionsList'
+                update: 'updateOptionsList'
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -187,7 +187,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateOptionsList'
+                update: 'updateOptionsList'
             }
             this.$store.dispatch("nextPage", payload);
         },

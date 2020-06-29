@@ -65,7 +65,7 @@ export default {
 
             payload: {
                 model: 'drawers',
-                update_list: 'updateDrawerList'
+                update: 'updateDrawerList'
             },
         }
     },

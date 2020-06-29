@@ -17,7 +17,7 @@ class ProductController extends Controller
 {
     public function shop()
     {
-        $products = Product::with('images')->paginate(300);
+        $products = Product::with('images')->paginate(20);
         return $this->transform_product($products, '');
     }
     /**

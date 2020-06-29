@@ -31,7 +31,7 @@
                         <tr class="table-row" v-for="cart in carts" :key="cart.id">
                             <td class="column-1">
                                 <div class="cart-img-product b-rad-4 o-f-hidden" @click="flashCart(cart)">
-                                    <img :src="cart.product.image" alt="">
+                                    <img :src="cart.name.image" alt="">
                                 </div>
                                 <div v-if="cart.attributes.length > 0">
                                     <div v-for="(attribute, index) in cart.attributes" :key="index">
@@ -44,7 +44,7 @@
                             <td class="column-4">
                                 <div class="flex-w bo5 of-hidden w-size17">
                                     <v-btn icon small @click="subtructCart(cart, -1)">
-                                        <i class="fa fa-minus"></i>
+                                        <v-icon>mdi-minus</v-icon>
                                     </v-btn>
                                     <p style="text-align: center; margin: auto;">{{ cart.quantity }}</p>
                                     <v-btn icon small @click="addToCart(cart, 1)">
@@ -150,7 +150,7 @@ export default {
         getCart() {
             var payload = {
                 model: 'getCart',
-                update_list: 'updateCartsList',
+                update: 'updateCartsList',
             }
             this.$store.dispatch('getItems', payload)
         },
@@ -176,7 +176,7 @@ export default {
 
             var payload = {
                 model: 'cart_total',
-                update_list: 'updateCartTotalList',
+                update: 'updateCartTotalList',
             }
             this.$store.dispatch('getItems', payload)
         },
@@ -184,7 +184,7 @@ export default {
             eventBus.$emit("progressEvent");
             var payload = {
                 model: 'flashCart',
-                update_list: 'updateCartsList',
+                update: 'updateCartsList',
             }
             this.$store.dispatch('getItems', payload)
         },

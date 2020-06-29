@@ -158,7 +158,7 @@ export default {
         getSliders() {
             var payload = {
                 model: 'slider',
-                update_list: 'updateSliderList'
+                update: 'updateSliderList'
             }
             this.$store.dispatch("getItems", payload);
         },

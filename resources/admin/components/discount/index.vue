@@ -92,7 +92,7 @@ export default {
             search: "",
             payload: {
                 model: 'discounts',
-                update_list: 'updateDiscountList'
+                update: 'updateDiscountList'
             },
             checkedRows: [],
             columns: [{
@@ -199,7 +199,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateDiscountsList'
+                update: 'updateDiscountsList'
             }
             this.$store.dispatch("nextPage", payload);
         }

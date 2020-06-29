@@ -101,7 +101,7 @@ export default {
         getSellers() {
             var payload = {
                 model: '/seller/sellers',
-                update_list: 'updateSellerList',
+                update: 'updateSellerList',
             }
             this.$store.dispatch("getItems", payload);
         },

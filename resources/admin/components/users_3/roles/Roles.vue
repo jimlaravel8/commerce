@@ -117,7 +117,7 @@ export default {
 
             var payload = {
                 model: 'permissions',
-                update_list: 'updatePermissionList',
+                update: 'updatePermissionList',
             }
 
             this.$store.dispatch('getItems', payload)
@@ -154,7 +154,7 @@ export default {
         getRoles() {
             var payload = {
                 model: 'roles',
-                update_list: 'updateRoleList',
+                update: 'updateRoleList',
             }
 
             this.$store.dispatch('getItems', payload)

@@ -92,7 +92,7 @@ export default {
             search: "",
             payload: {
                 model: '/seller/sellers',
-                update_list: 'updateSellerList'
+                update: 'updateSellerList'
             },
             columns: [{
                     label: "Id#",
@@ -135,7 +135,7 @@ export default {
             eventBus.$emit("openCreateSeller");
             var payload = {
                 model: 'groups',
-                update_list: 'updateGroupList',
+                update: 'updateGroupList',
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -203,7 +203,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateSellersList'
+                update: 'updateSellersList'
             }
             this.$store.dispatch("nextPage", payload);
         },

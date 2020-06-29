@@ -100,7 +100,7 @@ export default {
             eventBus.$emit("openCreateClient");
             var payload = {
                 model: 'groups',
-                update_list: 'updateGroupList',
+                update: 'updateGroupList',
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -115,7 +115,7 @@ export default {
         getClients() {
             payload = {
                 model: 'clients',
-                update_list: 'updateClientList'
+                update: 'updateClientList'
             },
             this.$store.dispatch("getItems", payload);
         },

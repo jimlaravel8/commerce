@@ -167,14 +167,14 @@ export default {
         getUsers() {
             var payload = {
                 model: 'users',
-                update_list: 'updateUsersList'
+                update: 'updateUsersList'
             }
             this.$store.dispatch("getItems", payload);
         },
         getRoles() {
             var payload = {
                 model: 'roles',
-                update_list: 'updateRoleList'
+                update: 'updateRoleList'
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -204,7 +204,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateUsersList'
+                update: 'updateUsersList'
             }
             this.$store.dispatch("nextPage", payload);
         },

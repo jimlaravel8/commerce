@@ -160,7 +160,7 @@ export default {
 
             var payload = {
                 model: 'statuses',
-                update_list: 'updateStatusList'
+                update: 'updateStatusList'
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -190,7 +190,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateStatusesList'
+                update: 'updateStatusesList'
             }
             this.$store.dispatch("nextPage", payload);
         },

@@ -2,64 +2,58 @@ import actions from './actions';
 import getters from './getters';
 import mutations from './mutations';
 
+
 export default {
     state: {
-        page_loader: false,
-        loading: false,
-        errors: [],
-        users: [],
-        deletedUsers: [],
-        roles: [],
-        permissions: [],
-        products: [],
-        customers: [],
-        sellers: [],
-        discount: [],
-        sales: [],
-        groups: [],
-        drawers: [],
-        discounts: [],
-        clients: [],
-        suppliers: [],
-        categories: [],
-        menu: [],
-        subcategories: [],
-        brands: [],
-        unique_sku: null,
-        option_values: [],
-        currency: [],
-        // Deleted
-        deleted_clients: [],
+
+    loading: false,
+    errors: [],
+    users: [],
+    deletedUsers: [],
+    roles: [],
+    permissions: [],
+    products: [],
+    customers: [],
+    discount: [],
+    sales: [],
+    order_address: [],
+    related: [],
+    carts: [],
+    discounts: [],
+    clients: [],
+    cart_count: null,
+    categories: [],
+    menu: [],
+    subcategories: [],
+    brands: [],
+    wish_count: null,
+    option_values: [],
+    orders: [],
+    category_products: [],
+    category: [],
+    subcategory: [],
+    product_slide: [],
+    cart_total: null,
+    // Deleted
+    deleted_clients: [],
+    onSale: [],
+
+    // Api
+    options: [],
+    sliderS: [],
+    slider: [],
+    cart: [],
+    product_setting: [],
+
+    product: [],
+
+    overlay: false,
 
 
-        // Dashboard
-        user_count: null,
-        week_sales_count: null,
-        sellers_count: null,
-        total_sales_count: null,
-        clients_count: null,
+    page_loader: false,
+    token: null,
 
-        product_count: null,
-        category_count: null,
-        brand_count: null,
-        low_stoke: null,
-        weekly_sale: [],
-        top_sales: [],
-
-        // Charts
-        clients_chart: null,
-        sellers_chart: null,
-        sales_chart: [],
-
-
-        // Api
-        options: [],
-        slider_1: [],
-        slider: [],
-        cart: [],
-
-
-    },
+  },
     getters,
     mutations,
     actions

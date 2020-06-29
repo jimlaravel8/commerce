@@ -187,7 +187,7 @@ export default {
 
             var payload = {
                 model: 'withdrawals',
-                update_list: 'updateWithdrawalList'
+                update: 'updateWithdrawalList'
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -217,7 +217,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateWithdrawalsList'
+                update: 'updateWithdrawalsList'
             }
             this.$store.dispatch("nextPage", payload);
         },

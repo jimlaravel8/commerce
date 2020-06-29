@@ -92,7 +92,7 @@ export default {
             search: "",
             payload: {
                 model: 'brands',
-                update_list: 'updateBrandList'
+                update: 'updateBrandList'
             },
             brands_det: {
                 data: []
@@ -129,7 +129,7 @@ export default {
             eventBus.$emit("openCreateBrand");
             var payload = {
                 model: 'groups',
-                update_list: 'updateGroupList',
+                update: 'updateGroupList',
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -193,7 +193,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateBrandsList'
+                update: 'updateBrandsList'
             }
             this.$store.dispatch("nextPage", payload);
         },

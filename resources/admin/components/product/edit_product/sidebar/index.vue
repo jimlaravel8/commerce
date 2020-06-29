@@ -49,7 +49,7 @@ export default {
 
             var payload = {
                 model: 'categories',
-                update_list: 'updateCategoryList'
+                update: 'updateCategoryList'
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -57,7 +57,7 @@ export default {
 
             var payload = {
                 model: 'subcategories',
-                update_list: 'updateSubcategoryList'
+                update: 'updateSubcategoryList'
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -65,7 +65,7 @@ export default {
 
             var payload = {
                 model: 'brands',
-                update_list: 'updateBrandList'
+                update: 'updateBrandList'
             }
             this.$store.dispatch("getItems", payload);
         },

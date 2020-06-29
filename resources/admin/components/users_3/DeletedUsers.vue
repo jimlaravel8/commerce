@@ -106,7 +106,7 @@ export default {
         getDeletedUsers() {
             var payload = {
                 model: 'deletedUsers',
-                update_list: 'updateDeletedUsersList',
+                update: 'updateDeletedUsersList',
             }
 
             this.$store.dispatch('getItems', payload)

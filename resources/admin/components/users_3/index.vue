@@ -203,7 +203,7 @@ export default {
         getUsers() {
             var payload = {
                 model: 'users',
-                update_list: 'updateUsersList',
+                update: 'updateUsersList',
             }
 
             this.$store.dispatch('getItems', payload)

@@ -189,7 +189,7 @@ export default {
         getProducts() {
             var payload = {
                 model: 'shop',
-                update_list: 'updateProductsList',
+                update: 'updateProductsList',
             }
             this.$store.dispatch('getItems', payload)
         },
@@ -214,14 +214,14 @@ export default {
             var payload = {
                 path: this.products.path,
                 page: this.products.current_page,
-                update_list: 'updateProductsList',
+                update: 'updateProductsList',
             }
             this.$store.dispatch('nextPage', payload)
         },
         getMenus() {
             var payload = {
                 model: 'menus',
-                update_list: 'updateMenuList',
+                update: 'updateMenuList',
             }
             this.$store.dispatch('getItems', payload)
         },
@@ -241,7 +241,7 @@ export default {
 
             var payload = {
                 model: 'wish',
-                update_list: 'updateWishList',
+                update: 'updateWishList',
             }
             this.$store.dispatch('getItems', payload)
 

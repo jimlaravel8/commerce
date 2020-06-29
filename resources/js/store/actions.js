@@ -141,12 +141,12 @@ export default {
 
 
     nextPage(context, payload) {
+        context.commit('page_loader', true)
 
         var path = payload.path
         var page = payload.page
         var update = payload.update
-        console.log(update);
-        context.commit('page_loader', true)
+        // console.log(update);
         context.commit('loading', true)
         return new Promise((resolve, reject) => {
             axios.get(path + `?page=` + page)
@@ -231,7 +231,7 @@ export default {
         context.commit('page_loader', false)
 
         return state.cart
-        context.commit('updateCartList', state.cart)
+        context.commit('updateCartsList', state.cart)
     },
 
     // Post Items
@@ -397,4 +397,55 @@ export default {
     },
 
 
+
+  // Post Item
+  postItem(context, payload) {
+    // console.log(payload);
+    context.commit('errors', [])
+
+    var model = payload.model
+    var id = payload.id
+    var data = payload.data
+
+    // var headers = {
+    //   'Content-type': 'Application/json',
+    //   'Accept': 'Application/json',
+    //   'Authorization': state.auth.access_local
+    // }
+
+    context.commit('loading', true)
+    return new Promise((resolve, reject) => {
+      axios.post(model + '/' + id, data).then((response) => {
+        context.commit('loading', false)
+
+        console.log(response.data);
+        eventBus.$emit('alertRequest', 'updated')
+        // eventBus.$emit('alertRequest', 'Created')
+        // console.log(response.data);
+        // context.commit(update_, response.data)
+        // eventBus.$emit("StoprogEvent");
+        resolve(response)
+      }).catch((error) => {
+        // console.log(error);
+        // eventBus.$emit("StoprogEvent");
+        reject(error);
+
+        context.commit('loading', false)
+        if (error.response.status === 500 || error.response.status === 405) {
+          eventBus.$emit('errorEvent', error.response.statusText)
+          return
+        } else if (error.response.status === 401 || error.response.status === 409) {
+          eventBus.$emit('reloadRequest', error.response.statusText)
+        } else if (error.response.status === 422) {
+          var errors_ = error.response.data.errors
+          context.commit('errors', errors_)
+          eventBus.$emit('errorEvent', error.response.data.message + ': ' + error.response.statusText)
+          context.commit('errors', error.response.data.errors)
+          return
+        }
+        context.commit('errors', error.response.data.errors)
+      })
+    });
+
+}
 }

@@ -92,7 +92,7 @@ export default {
             search: "",
             payload: {
                 model: 'subcategories',
-                update_list: 'updateSubcategoryList'
+                update: 'updateSubcategoryList'
             },
             subcategories_det: {
                 data: []
@@ -133,7 +133,7 @@ export default {
             eventBus.$emit("openCreateSubcategory");
             var payload = {
                 model: 'groups',
-                update_list: 'updateGroupList',
+                update: 'updateGroupList',
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -197,7 +197,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateSubcategoriesList'
+                update: 'updateSubcategoriesList'
             }
             this.$store.dispatch("nextPage", payload);
         },

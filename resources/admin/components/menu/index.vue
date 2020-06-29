@@ -92,7 +92,7 @@ export default {
             search: "",
             payload: {
                 model: 'menu',
-                update_list: 'updateMenuList'
+                update: 'updateMenuList'
             },
             menu_det: {
                 data: []
@@ -129,7 +129,7 @@ export default {
             eventBus.$emit("openCreateMenu");
             var payload = {
                 model: 'groups',
-                update_list: 'updateGroupList',
+                update: 'updateGroupList',
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -193,7 +193,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateMenusList'
+                update: 'updateMenusList'
             }
             this.$store.dispatch("nextPage", payload);
         },

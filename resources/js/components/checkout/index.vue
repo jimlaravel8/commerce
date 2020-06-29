@@ -1,6 +1,6 @@
 <template>
 <div>
-    <VCard style="padding: 20px;width: 80%; margin: auto;box-shadow: 7px 7px 8px -4px rgb(210, 225, 246),0 12px 17px 2px rgb(210, 225, 246),0 5px 22px 4px rgb(210, 225, 246) !important;margin-top: 200px;" v-if="user">
+    <VCard style="padding: 20px;width: 80%; margin: auto;box-shadow: 7px 7px 8px -4px rgb(210, 225, 246),0 12px 17px 2px rgb(210, 225, 246),0 5px 22px 4px rgb(210, 225, 246) !important;margin-top: 200px;">
         <v-stepper v-model="e6" vertical>
             <v-stepper-step :complete="e6 > 1" step="1">User information</v-stepper-step>
             <v-stepper-content step="1" style="background: #fff;">
@@ -29,7 +29,7 @@
             </v-stepper-content>
         </v-stepper>
     </VCard>
-    <div v-else style="padding: 20px 0;">
+    <!-- <div v-else style="padding: 20px 0;margin-top: 200px;">
         <VCard style="padding: 20px;width: 80%; margin: auto;box-shadow: 7px 7px 8px -4px rgb(210, 225, 246),0 12px 17px 2px rgb(210, 225, 246),0 5px 22px 4px rgb(210, 225, 246) !important;" class="text-center">
             <VCardText>
                 You are not loged in! Please login to proceed.
@@ -40,7 +40,7 @@
                 <v-btn text href="/register" color="primary">Sign up</v-btn>
             </v-card-actions>
         </VCard>
-    </div>
+    </div> -->
 </div>
 </template>
 
@@ -98,7 +98,7 @@ export default {
         },
         finish() {
             if (this.account.payment == 'Paypal') {
-                eventBus.$emit("paypalEvent", this.account);
+                eventBus.$emit("stripeEvent", this.account);
                 return
             }
             this.loading = true

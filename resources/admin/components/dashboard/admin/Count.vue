@@ -88,28 +88,28 @@ export default {
         getTotalSales() {
             var payload = {
                 model: "/total_sales_count",
-                update_list: "updateSaleCountList"
+                update: "updateSaleCountList"
             };
             this.$store.dispatch("getItems", payload);
         },
         getWeekSales() {
             var payload = {
                 model: "/week_sales_count",
-                update_list: "updateWeekSalesCountList"
+                update: "updateWeekSalesCountList"
             };
             this.$store.dispatch("getItems", payload);
         },
         getSellerCount() {
             var payload = {
                 model: "/sellers_count",
-                update_list: "updateSellerCountList"
+                update: "updateSellerCountList"
             };
             this.$store.dispatch("getItems", payload);
         },
         getClientCount() {
             var payload = {
                 model: "/clients_count",
-                update_list: "updateClientCountList"
+                update: "updateClientCountList"
             };
             this.$store.dispatch("getItems", payload);
         }

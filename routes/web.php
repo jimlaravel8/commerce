@@ -155,3 +155,7 @@ Route::get('/shop', 'Api\ProductController@shop')->name('shop');
 
 Route::get('product_variant/{id}', 'Api\VariantController@product_variant')->name('product_variant');
 Route::post('variants_values/{id}', 'Api\SkuController@variants_values')->name('variants_values');
+
+
+Route::get('PaymentStripe', 'Api\MoneySetupController@PaymentStripe')->name('PaymentStripe');
+Route::post('postPaymentStripe', 'Api\MoneySetupController@postPaymentStripe')->name('postPaymentStripe');

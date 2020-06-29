@@ -92,7 +92,7 @@ export default {
             search: "",
             payload: {
                 model: 'clients',
-                update_list: 'updateClientList'
+                update: 'updateClientList'
             },
             clients_det: {
                 data: []
@@ -145,7 +145,7 @@ export default {
             eventBus.$emit("openCreateClient");
             var payload = {
                 model: 'groups',
-                update_list: 'updateGroupList',
+                update: 'updateGroupList',
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -209,7 +209,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateClientsList'
+                update: 'updateClientsList'
             }
             this.$store.dispatch("nextPage", payload);
         },

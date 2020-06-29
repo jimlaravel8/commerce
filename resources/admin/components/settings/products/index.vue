@@ -96,7 +96,7 @@ export default {
             search: "",
             payload: {
                 model: 'menu',
-                update_list: 'updateMenuList'
+                update: 'updateMenuList'
             },
             columns: [{
                     label: "Description",
@@ -134,7 +134,7 @@ export default {
         },
 
         product_settings() {
-            
+
         }
 
     },

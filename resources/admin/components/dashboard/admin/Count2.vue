@@ -88,21 +88,21 @@ export default {
         getProducts() {
             var payload = {
                 model: "/product_count",
-                update_list: "UpdateProductsCountList"
+                update: "UpdateProductsCountList"
             };
             this.$store.dispatch("getItems", payload);
         },
         getCategory() {
             var payload = {
                 model: "/category_count",
-                update_list: "updateWeekSalesCountList"
+                update: "updateWeekSalesCountList"
             };
             this.$store.dispatch("getItems", payload);
         },
         getBrandCount() {
             var payload = {
                 model: "/brand_count",
-                update_list: "updateSellerCountList"
+                update: "updateSellerCountList"
             };
             this.$store.dispatch("getItems", payload);
         },

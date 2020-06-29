@@ -92,7 +92,7 @@ export default {
             search: "",
             payload: {
                 model: 'groups',
-                update_list: 'updateGroupList'
+                update: 'updateGroupList'
             },
             checkedRows: [],
             columns: [{
@@ -183,7 +183,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateGroupsList'
+                update: 'updateGroupsList'
             }
             this.$store.dispatch("nextPage", payload);
         }

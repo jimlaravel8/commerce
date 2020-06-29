@@ -57,7 +57,7 @@ export default {
             search: "",
             payload: {
                 model: 'products',
-                update_list: 'updateProductsList'
+                update: 'updateProductsList'
             },
             products_search: [],
             keys: ["name", "id"],
@@ -100,14 +100,14 @@ export default {
         getClients() {
             var payload = {
                 model: 'clients',
-                update_list: 'updateClientList'
+                update: 'updateClientList'
             }
             this.$store.dispatch("getItems", payload);
         },
         getDiscount() {
             var payload = {
                 model: 'discounts',
-                update_list: 'updateDiscountList'
+                update: 'updateDiscountList'
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -145,7 +145,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateProductsList'
+                update: 'updateProductsList'
             }
             this.$store.dispatch("nextPage", payload);
         },

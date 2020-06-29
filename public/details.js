@@ -223,7 +223,7 @@ __webpack_require__.r(__webpack_exports__);
     getReviews: function getReviews() {
       var payload = {
         model: 'reviews',
-        update_list: 'updateReviewsList'
+        update: 'updateReviewsList'
       };
       this.$store.dispatch('getItems', payload);
     },

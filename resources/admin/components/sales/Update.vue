@@ -70,7 +70,7 @@ export default {
 
             var payload = {
                 model: 'statuses',
-                update_list: 'updateStatusList'
+                update: 'updateStatusList'
             }
             this.$store.dispatch("getItems", payload);
         },

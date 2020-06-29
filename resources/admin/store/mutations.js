@@ -151,7 +151,7 @@ export default {
     },
 
 
-    updateCartList(state, payload) {
+    updateCartsList(state, payload) {
         state.cart = payload
 
         var exists = state.cart.some(function (product_1) {

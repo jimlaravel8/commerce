@@ -218,7 +218,7 @@ export default {
         getReviews() {
             var payload = {
                 model: 'reviews',
-                update_list: 'updateReviewsList',
+                update: 'updateReviewsList',
             }
             this.$store.dispatch('getItems', payload)
         },

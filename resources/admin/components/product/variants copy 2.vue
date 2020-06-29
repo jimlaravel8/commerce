@@ -493,7 +493,7 @@ export default {
         getOptions() {
             var payload = {
                 model: 'options',
-                update_list: 'updateOptionsList',
+                update: 'updateOptionsList',
             }
             this.$store.dispatch("getItems", payload);
 
@@ -501,7 +501,7 @@ export default {
         getOptionV() {
             var payload = {
                 model: 'option_values',
-                update_list: 'updateOptionValuesList',
+                update: 'updateOptionValuesList',
             }
             this.$store.dispatch("getItems", payload);
 
@@ -509,7 +509,7 @@ export default {
         getUniqueSku() {
             var payload = {
                 model: 'unique_sku',
-                update_list: 'updateunique_sku',
+                update: 'updateunique_sku',
             }
             this.$store.dispatch("getItems", payload);
 

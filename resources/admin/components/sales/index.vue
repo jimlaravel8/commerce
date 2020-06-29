@@ -118,7 +118,7 @@ export default {
             search: "",
             payload: {
                 model: 'sales',
-                update_list: 'updateSaleList'
+                update: 'updateSaleList'
             },
             checkedRows: [],
             columns: [{
@@ -201,7 +201,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateSalesList'
+                update: 'updateSalesList'
             }
             this.$store.dispatch("nextPage", payload);
         }

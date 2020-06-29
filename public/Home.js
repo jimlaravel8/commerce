@@ -107,6 +107,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -122,6 +142,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       this.$store.dispatch('getItems', payload);
     },
+    addToCart: function addToCart(cart) {
+      if (cart.product_variants.length > 0) {
+        eventBus.$emit('selectVariantsEvent', cart); // this.select_variants()
+
+        return;
+      }
+
+      cart.order_qty = 1;
+      eventBus.$emit("addCartEvent", cart);
+    },
     redirect: function redirect(proId) {
       // alert('oooo')
       this.$router.push({
@@ -130,6 +160,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           id: proId
         }
       });
+    },
+    nextPage: function nextPage() {
+      var payload = {
+        path: this.products.path,
+        page: this.products.current_page,
+        update: 'updateProductsList'
+      };
+      this.$store.dispatch('nextPage', payload);
     },
     imageUrlAlt: function imageUrlAlt() {
       event.target.src = '/assets/notfound/no_image.png';
@@ -558,56 +596,186 @@ var render = function() {
   return _c(
     "el-row",
     { staticStyle: { "margin-left": "60px" } },
-    _vm._l(_vm.products.data, function(product) {
-      return _c(
-        "el-col",
-        {
-          key: product.id,
-          staticStyle: { "margin-right": "30px" },
-          attrs: { span: 5 }
-        },
-        [
-          _c("el-card", { attrs: { "body-style": { padding: "0px" } } }, [
-            _c("img", {
-              staticClass: "image",
-              attrs: { src: product.image },
-              on: { error: _vm.imageUrlAlt }
-            }),
-            _vm._v(" "),
-            _c("div", { staticStyle: { padding: "14px" } }, [
-              _c("span", [_vm._v(_vm._s(product.product_name))]),
+    [
+      _vm._l(_vm.products.data, function(product) {
+        return _c(
+          "el-col",
+          {
+            key: product.id,
+            staticStyle: { "margin-right": "30px" },
+            attrs: { span: 5 }
+          },
+          [
+            _c("el-card", { attrs: { "body-style": { padding: "0px" } } }, [
+              _c("img", {
+                staticClass: "image",
+                attrs: { src: product.image },
+                on: { error: _vm.imageUrlAlt }
+              }),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "bottom clearfix" },
-                [
-                  _c("time", { staticClass: "time" }, [
-                    _vm._v(_vm._s(product.price))
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "el-button",
-                    {
-                      staticClass: "button",
-                      attrs: { type: "text" },
-                      on: {
-                        click: function($event) {
-                          return _vm.redirect(product.id)
+              _c("div", { staticStyle: { padding: "14px" } }, [
+                _c("span", [_vm._v(_vm._s(product.product_name))]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "bottom clearfix" },
+                  [
+                    _c(
+                      "v-tooltip",
+                      {
+                        attrs: { bottom: "" },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "activator",
+                              fn: function(ref) {
+                                var on = ref.on
+                                var attrs = ref.attrs
+                                return [
+                                  _c(
+                                    "v-btn",
+                                    _vm._g(
+                                      _vm._b(
+                                        {
+                                          attrs: { icon: "" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.addToCart(product)
+                                            }
+                                          }
+                                        },
+                                        "v-btn",
+                                        attrs,
+                                        false
+                                      ),
+                                      on
+                                    ),
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { color: "grey lighten-1" } },
+                                        [_vm._v("mdi-cart")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            }
+                          ],
+                          null,
+                          true
+                        ),
+                        model: {
+                          value: _vm.show,
+                          callback: function($$v) {
+                            _vm.show = $$v
+                          },
+                          expression: "show"
                         }
-                      }
-                    },
-                    [_vm._v("Details")]
-                  )
-                ],
-                1
-              )
+                      },
+                      [_vm._v(" "), _c("span", [_vm._v("Add to Cart")])]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-tooltip",
+                      {
+                        attrs: { bottom: "" },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "activator",
+                              fn: function(ref) {
+                                var on = ref.on
+                                var attrs = ref.attrs
+                                return [
+                                  _c(
+                                    "v-btn",
+                                    _vm._g(
+                                      _vm._b(
+                                        {
+                                          staticStyle: { float: "right" },
+                                          attrs: { icon: "" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.redirect(product.id)
+                                            }
+                                          }
+                                        },
+                                        "v-btn",
+                                        attrs,
+                                        false
+                                      ),
+                                      on
+                                    ),
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { color: "grey lighten-1" } },
+                                        [_vm._v("mdi-eye")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            }
+                          ],
+                          null,
+                          true
+                        ),
+                        model: {
+                          value: _vm.show,
+                          callback: function($$v) {
+                            _vm.show = $$v
+                          },
+                          expression: "show"
+                        }
+                      },
+                      [_vm._v(" "), _c("span", [_vm._v("More details")])]
+                    )
+                  ],
+                  1
+                )
+              ])
             ])
-          ])
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "text-center" },
+        [
+          _c("v-pagination", {
+            attrs: {
+              length: _vm.products.last_page,
+              "total-visible": "6",
+              circle: ""
+            },
+            on: {
+              input: function($event) {
+                return _vm.nextPage(
+                  _vm.products.path,
+                  _vm.products.current_page,
+                  "products"
+                )
+              }
+            },
+            model: {
+              value: _vm.products.current_page,
+              callback: function($$v) {
+                _vm.$set(_vm.products, "current_page", $$v)
+              },
+              expression: "products.current_page"
+            }
+          })
         ],
         1
       )
-    }),
-    1
+    ],
+    2
   )
 }
 var staticRenderFns = []

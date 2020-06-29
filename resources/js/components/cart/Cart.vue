@@ -71,7 +71,6 @@ export default {
             // csrf: document
             //     .querySelector('meta[name="csrf-token"]')
             //     .getAttribute("content"),
-            carts: [],
             newCart: [],
             cartAdd: false,
             totalPrice: 0,

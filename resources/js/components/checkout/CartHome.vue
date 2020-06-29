@@ -61,8 +61,12 @@
 
             </div>
 
+            <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm" v-if="account.payment === 'Stripe'">
+                <myStripe />
+            </div>
+
             <!-- Total -->
-            <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
+            <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm" v-else>
                 <h5 class="m-text20 p-b-24">Cart Totals</h5>
                 <!--  -->
                 <div class="flex-w flex-sb-m p-b-12">
@@ -87,41 +91,31 @@
 
                 <div class="size15 trans-0-4">
                     <!-- Button -->
-                    <form action="/createpayment" method="post" ref="paypal" v-if="account.payment === 'Paypal'">
+                    <!-- <form action="/postPaymentStripe" method="post" ref="stripe" v-if="account.payment === 'Stripe'">
                         <input type="hidden" name="_token" :value="csrf">
                         <button type="submit" style="height: 44px;" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">Place Order</button>
-                    </form>
-                    <v-btn flat color="primary" @click="cash_delivery" v-else-if="account.payment === 'M-pesa'">Place Order</v-btn>
-                    <v-btn flat color="primary" @click="cash_delivery" v-else>Place Order</v-btn>
+                    </form> -->
+                    <v-btn flat color="primary" @click="cash_delivery">Place Order</v-btn>
                 </div>
             </div>
         </div>
-        <!-- <div v-else style="background: #f0f0f0;">
-            <p class="text-center" style="background: #f2dede; font-size: 13px; color: #a94442 !important;">Your shopping cart is empty!</p>
-            <v-list>
-                <router-link to="/shop" class="v-list__tile v-list__tile--link" style="width: 8%; margin: auto;">
-                    <div class="v-list__tile__content">
-                        <div class="v-list__tile__title">
-                            Go to Shop
-                        </div>
-                    </div>
-                </router-link>
-            </v-list>
-        </div> -->
     </section>
 </div>
 </template>
 
 <script>
+import myStripe from './stripe'
 export default {
     name: 'cart_home',
     props: ['account'],
+    components: {
+        myStripe,
+    },
     data() {
         return {
             csrf: document
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content"),
-
 
             loader: false,
             totalCoupon: 0,
@@ -176,7 +170,7 @@ export default {
 
             var payload = {
                 model: 'cart_total',
-                update_list: 'updateCartTotalList',
+                update: 'updateCartTotalList',
             }
             this.$store.dispatch('getItems', payload)
         },
@@ -274,8 +268,8 @@ export default {
             this.cartAdd = true;
         });
 
-        eventBus.$on("paypalEvent", data => {
-            this.$refs.paypal.submit()
+        eventBus.$on("stripeEvent", data => {
+            this.$refs.stripe.submit()
         });
     },
     computed: {

@@ -1,134 +1,122 @@
 export default {
-
-    page_loader(state) {
-        return state.page_loader
-    },
-    
     loading(state) {
-        return state.loading;
+      return state.loading;
     },
     errors(state) {
-        return state.errors;
+      return state.errors;
+    },
+    page_loader(state) {
+      return state.page_loader;
     },
     alertEvent(state) {
-        eventBus.$emit('alertEvent', state)
-        // return state.alertEvent;
+      eventBus.$emit('alertEvent', state)
+      // return state.alertEvent;
     },
     users(state) {
-        return state.users
+      return state.users
     },
     deletedUsers(state) {
-        return state.deletedUsers
+      return state.deletedUsers
     },
     roles(state) {
-        return _.orderBy(state.roles, 'name', 'asc')
+      return _.orderBy(state.roles, 'name', 'asc')
     },
     permissions(state) {
-        return state.permissions;
+      return state.permissions;
     },
     products(state) {
-        return state.products
+      return state.products
+    },
+    product(state) {
+      return state.product
     },
     clients(state) {
-        return state.clients
+      return state.clients
     },
-    sellers(state) {
-        return state.sellers
+    order_address(state) {
+      return state.order_address;
     },
-    suppliers(state) {
-        return state.suppliers
+    related(state) {
+      return state.related
+    },
+    product_slide(state) {
+      return state.product_slide
+    },
+    category_products(state) {
+      return state.category_products
     },
     customers(state) {
-        return state.customers
+      return state.customers
     },
     discount(state) {
-        return state.discount
+      return state.discount
     },
     sales(state) {
-        return state.sales
+      return state.sales
     },
-    groups(state) {
-        return state.groups
+    carts(state) {
+      return state.carts
     },
-    drawers(state) {
-        return state.drawers
+    cart_count(state) {
+      return state.cart_count
     },
 
     discounts(state) {
-        return state.discounts
+      return state.discounts
     },
     // Unique
-    unique_sku(state) {
-        return state.unique_sku;
+    wish_count(state) {
+      return state.wish_count;
     },
     categories(state) {
-        return state.categories;
+      return state.categories;
     },
     menu(state) {
-        return state.menu;
+      return state.menu;
     },
     subcategories(state) {
-        return state.subcategories;
+      return state.subcategories;
     },
     brands(state) {
-        return state.brands;
+      return state.brands;
     },
-    currency(state) {
-        return state.currency;
+    cart_total(state) {
+      return state.cart_total;
     },
+    orders(state) {
+      return state.orders;
+    },
+    onSale(state) {
+      return state.onSale;
+    },
+
+
     options(state) {
-        return state.options;
+      return state.options;
     },
     option_values(state) {
-        return state.option_values;
+      return state.option_values;
     },
-    weekly_sale(state) {
-        return state.weekly_sale;
+    product_setting(state) {
+      return state.product_setting;
     },
-    low_stoke(state) {
-        return state.low_stoke;
+    slider(state) {
+      return state.slider;
     },
-
-
-
-    // Dashboard
-    user_count(state) {
-        return state.user_count
-    },
-    week_sales_count(state) {
-        return state.week_sales_count
-    },
-    sellers_count(state) {
-        return state.sellers_count
-    },
-    total_sales_count(state) {
-        return state.total_sales_count
-    },
-    clients_count(state) {
-        return state.clients_count
-    },
-    product_count(state) {
-        return state.product_count;
-    },
-    category_count(state) {
-        return state.category_count;
-    },
-    brand_count(state) {
-        return state.brand_count;
-    },
-    top_sales(state) {
-        return state.top_sales;
+    sliderS(state) {
+      return state.sliderS;
     },
 
-    // Charts
-    sales_chart(state) {
-        return state.sales_chart
-    },
-    clients_chart(state) {
-        return state.clients_chart
-    },
-    sellers_chart(state) {
-        return state.sellers_chart
+
+    token(state) {
+      return state.token;
     },
 
-}
+    // isAuthenticated(state) {
+    //   return state.loggedIn
+    // },
+
+    loggedIn(state) {
+      return state.loggedIn
+    }
+  }

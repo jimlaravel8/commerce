@@ -92,7 +92,7 @@ export default {
             search: "",
             payload: {
                 model: 'currencies',
-                update_list: 'updateCurrencyList'
+                update: 'updateCurrencyList'
             },
             currency_det: {
                 data: []
@@ -137,7 +137,7 @@ export default {
             eventBus.$emit("openCreateCurrency");
             var payload = {
                 model: 'groups',
-                update_list: 'updateGroupList',
+                update: 'updateGroupList',
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -201,7 +201,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateCurrenciesList'
+                update: 'updateCurrenciesList'
             }
             this.$store.dispatch("nextPage", payload);
         },

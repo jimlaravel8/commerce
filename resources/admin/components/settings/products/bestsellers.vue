@@ -61,7 +61,7 @@ export default {
         getCategories() {
             var payload = {
                 model: 'categories',
-                update_list: 'updateCategoryList'
+                update: 'updateCategoryList'
             }
             this.$store.dispatch("getItems", payload);
         },

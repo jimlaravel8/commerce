@@ -392,7 +392,7 @@ export default {
         getOptions() {
             var payload = {
                 model: 'options',
-                update_list: 'updateOptionsList',
+                update: 'updateOptionsList',
             }
             this.$store.dispatch("getItems", payload);
 
@@ -400,7 +400,7 @@ export default {
         getOptionV() {
             var payload = {
                 model: 'option_values',
-                update_list: 'updateOptionValuesList',
+                update: 'updateOptionValuesList',
             }
             this.$store.dispatch("getItems", payload);
 

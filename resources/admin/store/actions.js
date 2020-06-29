@@ -15,7 +15,7 @@ export default {
         // console.log(payload);
 
         var model = payload.model
-        var update_ = payload.update_list
+        var update_ = payload.update
         context.commit('loading', true)
         return new Promise((resolve, reject) => {
             axios.get(model).then((response) => {
@@ -77,7 +77,7 @@ export default {
 
         var path = payload.path
         var page = payload.page
-        var update_ = payload.update_list
+        var update_ = payload.update
         console.log(update_);
         context.commit('loading', true)
         return new Promise((resolve, reject) => {
@@ -155,7 +155,7 @@ export default {
             Object.assign(state.cart[index], add_item)
         }
         return state.cart
-        context.commit('updateCartList', state.cart)
+        context.commit('updateCartsList', state.cart)
     },
 
     // Post Items
@@ -170,7 +170,7 @@ export default {
 
         // var data = payload['data']
         // console.log(data);
-        // var update_ = payload['update_list']
+        // var update_ = payload['update']
         context.commit('loading', true)
         return new Promise((resolve, reject) => {
             axios.post(model, data).then((response) => {
@@ -254,7 +254,7 @@ export default {
 
         // var data = payload['data']
         // console.log(data);
-        // var update_ = payload['update_list']
+        // var update_ = payload['update']
         context.commit('loading', true)
         return new Promise((resolve, reject) => {
             axios.post(model + '/' + id, data).then((response) => {

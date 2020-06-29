@@ -92,7 +92,7 @@ export default {
             search: "",
             payload: {
                 model: 'categories',
-                update_list: 'updateCategoryList'
+                update: 'updateCategoryList'
             },
             categories_det: {
                 data: []
@@ -172,7 +172,7 @@ export default {
         getMenu() {
             var payload = {
                 model: 'menu',
-                update_list: 'updateMenuList',
+                update: 'updateMenuList',
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -202,7 +202,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateCategoriesList'
+                update: 'updateCategoriesList'
             }
             this.$store.dispatch("nextPage", payload);
         },

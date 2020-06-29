@@ -156,14 +156,14 @@ export default {
         getRoles() {
             var payload = {
                 model: 'roles',
-                update_list: 'updateRoleList'
+                update: 'updateRoleList'
             }
             this.$store.dispatch("getItems", payload);
         },
         getPermissions() {
             var payload = {
                 model: 'permissions',
-                update_list: 'updatePermissionList'
+                update: 'updatePermissionList'
             }
             this.$store.dispatch("getItems", payload);
         },
@@ -193,7 +193,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateRoleList'
+                update: 'updateRoleList'
             }
             this.$store.dispatch("nextPage", payload);
         },

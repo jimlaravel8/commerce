@@ -159,7 +159,7 @@ __webpack_require__.r(__webpack_exports__);
     getCart: function getCart() {
       var payload = {
         model: 'getCart',
-        update_list: 'updateCartsList'
+        update: 'updateCartsList'
       };
       this.$store.dispatch('getItems', payload);
     },
@@ -183,7 +183,7 @@ __webpack_require__.r(__webpack_exports__);
     get_cart_total: function get_cart_total() {
       var payload = {
         model: 'cart_total',
-        update_list: 'updateCartTotalList'
+        update: 'updateCartTotalList'
       };
       this.$store.dispatch('getItems', payload);
     },
@@ -191,7 +191,7 @@ __webpack_require__.r(__webpack_exports__);
       eventBus.$emit("progressEvent");
       var payload = {
         model: 'flashCart',
-        update_list: 'updateCartsList'
+        update: 'updateCartsList'
       };
       this.$store.dispatch('getItems', payload);
     },
@@ -507,7 +507,7 @@ var render = function() {
                               },
                               [
                                 _c("img", {
-                                  attrs: { src: cart.product.image, alt: "" }
+                                  attrs: { src: cart.name.image, alt: "" }
                                 })
                               ]
                             ),
@@ -558,7 +558,8 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [_c("i", { staticClass: "fa fa-minus" })]
+                                  [_c("v-icon", [_vm._v("mdi-minus")])],
+                                  1
                                 ),
                                 _vm._v(" "),
                                 _c(

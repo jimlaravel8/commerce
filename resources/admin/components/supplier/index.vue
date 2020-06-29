@@ -207,7 +207,7 @@ export default {
             var payload = {
                 path: path,
                 page: page,
-                update_list: 'updateProductsList'
+                update: 'updateProductsList'
             }
             this.$store.dispatch("nextPage", payload);
         }
