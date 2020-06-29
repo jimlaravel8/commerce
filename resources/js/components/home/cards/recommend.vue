@@ -6,7 +6,7 @@
             <div style="padding: 14px;">
                 <span>{{ product.product_name }}</span>
                 <div class="bottom clearfix">
-                    <v-tooltip v-model="show" bottom>
+                    <v-tooltip bottom>
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn icon v-bind="attrs" v-on="on" @click="addToCart(product)">
                                 <v-icon color="grey lighten-1">mdi-cart</v-icon>
@@ -15,7 +15,7 @@
                         <span>Add to Cart</span>
                     </v-tooltip>
 
-                    <v-tooltip v-model="show" bottom>
+                    <v-tooltip bottom>
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn icon v-bind="attrs" v-on="on" @click="redirect(product.id)" style="float: right">
                                 <v-icon color="grey lighten-1">mdi-eye</v-icon>

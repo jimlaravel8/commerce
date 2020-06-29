@@ -665,14 +665,7 @@ var render = function() {
                           ],
                           null,
                           true
-                        ),
-                        model: {
-                          value: _vm.show,
-                          callback: function($$v) {
-                            _vm.show = $$v
-                          },
-                          expression: "show"
-                        }
+                        )
                       },
                       [_vm._v(" "), _c("span", [_vm._v("Add to Cart")])]
                     ),
@@ -723,14 +716,7 @@ var render = function() {
                           ],
                           null,
                           true
-                        ),
-                        model: {
-                          value: _vm.show,
-                          callback: function($$v) {
-                            _vm.show = $$v
-                          },
-                          expression: "show"
-                        }
+                        )
                       },
                       [_vm._v(" "), _c("span", [_vm._v("More details")])]
                     )
