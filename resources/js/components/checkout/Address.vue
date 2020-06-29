@@ -2,33 +2,34 @@
 <div>
     <h2>Billing Address</h2>
     <v-container grid-list-xl fluid>
-        <v-layout wrap v-if="user">
+        <v-layout wrap v-if="user && user.shipping">
             <v-flex xs12 sm6>
-                <v-text-field v-model="user.billing.name" color="blue darken-2" label="Full name" required></v-text-field>
+                <v-text-field v-model="user.shipping.name" color="blue darken-2" label="Full name" required></v-text-field>
             </v-flex>
             <v-flex xs12 sm6>
-                <v-text-field v-model="user.billing.email" color="blue darken-2" label="Email" required></v-text-field>
+                <v-text-field v-model="user.shipping.email" color="blue darken-2" label="Email" required></v-text-field>
             </v-flex>
             <v-flex xs12 sm6>
-                <v-text-field v-model="user.billing.street_address" color="blue darken-2" label="Address" required></v-text-field>
+                <v-text-field v-model="user.shipping.street_address" color="blue darken-2" label="Address" required></v-text-field>
             </v-flex>
             <v-flex xs12 sm6>
-                <v-text-field v-model="user.billing.town" color="blue darken-2" label="City/Town" required></v-text-field>
+                <v-text-field v-model="user.shipping.town" color="blue darken-2" label="City/Town" required></v-text-field>
             </v-flex>
             <v-flex xs12 sm6>
-                <v-text-field v-model="user.billing.country" color="blue darken-2" label="Country" required></v-text-field>
+                <v-text-field v-model="user.shipping.country" color="blue darken-2" label="Country" required></v-text-field>
             </v-flex>
             <v-flex xs12 sm6>
-                <v-text-field v-model="user.billing.county" color="blue darken-2" label="County" required></v-text-field>
+                <v-text-field v-model="user.shipping.county" color="blue darken-2" label="County" required></v-text-field>
             </v-flex>
             <v-flex xs12 sm6>
-                <v-text-field v-model="user.billing.phone" color="blue darken-2" label="Phone" required></v-text-field>
+                <v-text-field v-model="user.shipping.phone" color="blue darken-2" label="Phone" required></v-text-field>
             </v-flex>
             <v-flex xs12 sm6>
-                <v-text-field v-model="user.billing.postal_code" color="blue darken-2" label="Zip/Postcode" required></v-text-field>
+                <v-text-field v-model="user.shipping.postal_code" color="blue darken-2" label="Zip/Postcode" required></v-text-field>
             </v-flex>
-            <v-btn text color="primary">Save address</v-btn>
+            <!-- <v-btn text color="primary">Save address</v-btn> -->
         </v-layout>
+
 
         <v-layout wrap v-else>
             <v-flex xs12 sm6>
@@ -69,7 +70,7 @@ export default {
         }
     },
 
-    
+
 }
 </script>
 

@@ -50,6 +50,7 @@ class SaleController extends Controller
      */
     public function sale($carts, $method, $payment, $data)
     {
+        // dd($data);
         $client_id = Auth::id();
         // return ($client_id);
         // $client_id = 1;
@@ -66,10 +67,10 @@ class SaleController extends Controller
         $order_no = new AutoGenerate;
         $sale->order_no = $order_no->order_no();
         $sale->payment_method = 'method';
-        if ($method == 'Paypal') {
-            $sale->payment_id = $payment->id;
-            $sale->paypal = $payment;
-        }
+        // if ($method == 'Stripe') {
+        //     $sale->payment_id = $payment->id;
+        //     $sale->paypal = $payment;
+        // }
         $sale->save();
         foreach ($carts as $cart) {
             // dd($cart->name['vendor_id']);
@@ -78,7 +79,6 @@ class SaleController extends Controller
             $product_sale = new ProductSale;
             $product_sale->sale_id = $sale->id;
             $product_sale->product_id = $cart->name['id'];
-            $product_sale->seller_id = $cart->name['vendor_id'];
             $product_sale->sku_id = $sku_id;
             $product_sale->sku_no =  $cart->name['sku_no'];
             $product_sale->price = $cart->name['price'];
@@ -113,7 +113,7 @@ class SaleController extends Controller
 
         $cart_item = new CartController;
         $cart =  $cart_item->getCart(Auth::id());
-        Mail::to($user['email'])->send(new NewOrder($sale, $user, $cart));
+        // Mail::to($user['email'])->send(new NewOrder($sale, $user, $cart));
 
         Cart::session(Auth::id())->clear();
 

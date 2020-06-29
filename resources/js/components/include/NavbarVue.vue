@@ -284,11 +284,9 @@ export default {
     },
 
     computed: {
-        ...mapState(['cart_count', 'user']),
+        ...mapState(['cart_count']),
 
-        loggedIn() {
-            user
-        }
+
 
         // console.log(this.$auth.$state.access_local);
 

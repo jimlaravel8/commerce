@@ -71,6 +71,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user', 'form'],
   data: function data() {
@@ -198,7 +199,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'cart_home',
-  props: ['account'],
+  props: ['account', 'form', 'user'],
   components: {
     myStripe: _stripe__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -215,25 +216,19 @@ __webpack_require__.r(__webpack_exports__);
       },
       couponSessin: [],
       CartProduct: [],
-      err_ms: '',
-      form: {
-        total: null
-      }
+      err_ms: ''
     };
   },
   methods: {
     getCart: function getCart() {
-      var _this = this;
-
-      axios.get("/getCart").then(function (response) {
-        eventBus.$emit("StoprogEvent");
-        _this.carts = response.data;
-        _this.loader = false;
-        eventBus.$emit("cartEvent", response.data);
-      });
+      var payload = {
+        model: 'getCart',
+        update: 'updateCartsList'
+      };
+      this.$store.dispatch('getItems', payload);
     },
     cash_delivery: function cash_delivery() {
-      var _this2 = this;
+      var _this = this;
 
       eventBus.$emit("progressEvent");
       this.account.total = parseInt(this.getSubTotal) - parseInt(this.getCouponT);
@@ -246,8 +241,8 @@ __webpack_require__.r(__webpack_exports__);
         // this.snackbar = true;
       })["catch"](function (error) {
         eventBus.$emit("StoprogEvent");
-        _this2.loading = false;
-        _this2.errors = error.response.data.errors;
+        _this.loading = false;
+        _this.errors = error.response.data.errors;
       });
     },
     goToCheckout: function goToCheckout() {
@@ -263,7 +258,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('getItems', payload);
     },
     flashCart: function flashCart(cart) {
-      var _this3 = this;
+      var _this2 = this;
 
       console.log(cart);
       eventBus.$emit("progressEvent"); // eventBus.$emit("loadingRequest");
@@ -272,12 +267,12 @@ __webpack_require__.r(__webpack_exports__);
         eventBus.$emit("StoprogEvent");
         eventBus.$emit("cartEvent", response.data);
         eventBus.$emit("alertRequest", "Item Removed");
-        _this3.carts = response.data; // this.message = "added";
+        _this2.carts = response.data; // this.message = "added";
         // this.snackbar = true;
       })["catch"](function (error) {
         eventBus.$emit("StoprogEvent");
-        _this3.loading = false;
-        _this3.errors = error.response.data.errors;
+        _this2.loading = false;
+        _this2.errors = error.response.data.errors;
       });
     },
     subtructCart: function subtructCart(cart) {
@@ -289,55 +284,55 @@ __webpack_require__.r(__webpack_exports__);
       eventBus.$emit("subCartEvent", cart);
     },
     couponApply: function couponApply() {
-      var _this4 = this;
+      var _this3 = this;
 
       axios.post("/couponApply", this.coupon).then(function (response) {
         console.log(response.data.errors);
 
         if (response.data.errors) {
-          return _this4.err_ms = response.data.errors;
+          return _this3.err_ms = response.data.errors;
         } else {
           eventBus.$emit("StoprogEvent");
           eventBus.$emit("cartEvent", response.data);
           eventBus.$emit("alertRequest", "Coupon Applied");
 
-          _this4.getCouponSess();
+          _this3.getCouponSess();
 
-          _this4.getCart();
+          _this3.getCart();
 
-          _this4.err_ms = '';
+          _this3.err_ms = '';
         } // this.message = "added";
         // this.snackbar = true;
 
       })["catch"](function (error) {
         console.log(error);
         eventBus.$emit("StoprogEvent");
-        _this4.errors = error.response.data.errors;
+        _this3.errors = error.response.data.errors;
       });
     },
     getCartProduct: function getCartProduct() {
-      var _this5 = this;
+      var _this4 = this;
 
       eventBus.$emit("progressEvent");
       axios.get("/getCart").then(function (response) {
         console.log(response.data);
         eventBus.$emit("StoprogEvent");
-        _this5.CartProduct = response.data;
+        _this4.CartProduct = response.data;
       })["catch"](function (error) {
         eventBus.$emit("StoprogEvent");
-        _this5.errors = error.response.data.errors;
+        _this4.errors = error.response.data.errors;
       });
     },
     getCouponSess: function getCouponSess() {
-      var _this6 = this;
+      var _this5 = this;
 
       eventBus.$emit("progressEvent");
       axios.get("/couponSes").then(function (response) {
         eventBus.$emit("StoprogEvent");
-        _this6.couponSessin = response.data;
+        _this5.couponSessin = response.data;
       })["catch"](function (error) {
         eventBus.$emit("StoprogEvent");
-        _this6.errors = error.response.data.errors;
+        _this5.errors = error.response.data.errors;
       });
     }
   },
@@ -348,14 +343,14 @@ __webpack_require__.r(__webpack_exports__);
     this.getCart();
   },
   created: function created() {
-    var _this7 = this;
+    var _this6 = this;
 
     eventBus.$on("cartEvent", function (data) {
-      _this7.carts = data;
-      _this7.cartAdd = true;
+      _this6.carts = data;
+      _this6.cartAdd = true;
     });
     eventBus.$on("stripeEvent", function (data) {
-      _this7.$refs.stripe.submit();
+      _this6.$refs.stripe.submit();
     });
   },
   computed: {
@@ -453,7 +448,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['account'],
+  props: ['account', 'checkout', 'form', 'user'],
   components: {
     myCart: _CartHome__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -673,6 +668,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -712,10 +714,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['account', 'user', 'form'],
   data: function data() {
     return {
-      form: {
+      card_data: {
         card_no: null,
         cvvNumber: null,
         ccExpiryMonth: null,
@@ -726,13 +730,40 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     stripe_pay: function stripe_pay() {
+      var _this = this;
+
+      // var payload = {
+      //     model: 'order',
+      //     data: this.account,
+      // }
+      // this.$store.dispatch('postItems', payload)
       var payload = {
         model: 'postPaymentStripe',
-        data: this.form
-      };
-      this.$store.dispatch('postItems', payload);
+        data: this.card_data
+      }; // var payload = {
+      //     model: 'postPaymentStripe',
+      //     data: {
+      //         card_data: this.card_data,
+      //         account: this.account,
+      //         form: this.form,
+      //     },
+      // }
+
+      this.$store.dispatch('postItems', payload).then(function (response) {
+        var payload = {
+          model: 'place_order',
+          data: {
+            card_data: _this.card_data,
+            account: _this.account,
+            form: _this.form
+          }
+        };
+
+        _this.$store.dispatch('postItems', payload);
+      });
     }
-  }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['cart_total']))
 });
 
 /***/ }),
@@ -810,7 +841,7 @@ var render = function() {
         "v-container",
         { attrs: { "grid-list-xl": "", fluid: "" } },
         [
-          _vm.user
+          _vm.user && _vm.user.shipping
             ? _c(
                 "v-layout",
                 { attrs: { wrap: "" } },
@@ -826,11 +857,11 @@ var render = function() {
                           required: ""
                         },
                         model: {
-                          value: _vm.user.billing.name,
+                          value: _vm.user.shipping.name,
                           callback: function($$v) {
-                            _vm.$set(_vm.user.billing, "name", $$v)
+                            _vm.$set(_vm.user.shipping, "name", $$v)
                           },
-                          expression: "user.billing.name"
+                          expression: "user.shipping.name"
                         }
                       })
                     ],
@@ -848,11 +879,11 @@ var render = function() {
                           required: ""
                         },
                         model: {
-                          value: _vm.user.billing.email,
+                          value: _vm.user.shipping.email,
                           callback: function($$v) {
-                            _vm.$set(_vm.user.billing, "email", $$v)
+                            _vm.$set(_vm.user.shipping, "email", $$v)
                           },
-                          expression: "user.billing.email"
+                          expression: "user.shipping.email"
                         }
                       })
                     ],
@@ -870,11 +901,11 @@ var render = function() {
                           required: ""
                         },
                         model: {
-                          value: _vm.user.billing.street_address,
+                          value: _vm.user.shipping.street_address,
                           callback: function($$v) {
-                            _vm.$set(_vm.user.billing, "street_address", $$v)
+                            _vm.$set(_vm.user.shipping, "street_address", $$v)
                           },
-                          expression: "user.billing.street_address"
+                          expression: "user.shipping.street_address"
                         }
                       })
                     ],
@@ -892,11 +923,11 @@ var render = function() {
                           required: ""
                         },
                         model: {
-                          value: _vm.user.billing.town,
+                          value: _vm.user.shipping.town,
                           callback: function($$v) {
-                            _vm.$set(_vm.user.billing, "town", $$v)
+                            _vm.$set(_vm.user.shipping, "town", $$v)
                           },
-                          expression: "user.billing.town"
+                          expression: "user.shipping.town"
                         }
                       })
                     ],
@@ -914,11 +945,11 @@ var render = function() {
                           required: ""
                         },
                         model: {
-                          value: _vm.user.billing.country,
+                          value: _vm.user.shipping.country,
                           callback: function($$v) {
-                            _vm.$set(_vm.user.billing, "country", $$v)
+                            _vm.$set(_vm.user.shipping, "country", $$v)
                           },
-                          expression: "user.billing.country"
+                          expression: "user.shipping.country"
                         }
                       })
                     ],
@@ -936,11 +967,11 @@ var render = function() {
                           required: ""
                         },
                         model: {
-                          value: _vm.user.billing.county,
+                          value: _vm.user.shipping.county,
                           callback: function($$v) {
-                            _vm.$set(_vm.user.billing, "county", $$v)
+                            _vm.$set(_vm.user.shipping, "county", $$v)
                           },
-                          expression: "user.billing.county"
+                          expression: "user.shipping.county"
                         }
                       })
                     ],
@@ -958,11 +989,11 @@ var render = function() {
                           required: ""
                         },
                         model: {
-                          value: _vm.user.billing.phone,
+                          value: _vm.user.shipping.phone,
                           callback: function($$v) {
-                            _vm.$set(_vm.user.billing, "phone", $$v)
+                            _vm.$set(_vm.user.shipping, "phone", $$v)
                           },
-                          expression: "user.billing.phone"
+                          expression: "user.shipping.phone"
                         }
                       })
                     ],
@@ -980,20 +1011,16 @@ var render = function() {
                           required: ""
                         },
                         model: {
-                          value: _vm.user.billing.postal_code,
+                          value: _vm.user.shipping.postal_code,
                           callback: function($$v) {
-                            _vm.$set(_vm.user.billing, "postal_code", $$v)
+                            _vm.$set(_vm.user.shipping, "postal_code", $$v)
                           },
-                          expression: "user.billing.postal_code"
+                          expression: "user.shipping.postal_code"
                         }
                       })
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c("v-btn", { attrs: { text: "", color: "primary" } }, [
-                    _vm._v("Save address")
-                  ])
+                  )
                 ],
                 1
               )
@@ -1268,7 +1295,7 @@ var render = function() {
                             },
                             [
                               _c("img", {
-                                attrs: { src: cart.product.image, alt: "" }
+                                attrs: { src: cart.name.image, alt: "" }
                               })
                             ]
                           )
@@ -1402,14 +1429,18 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _vm.account.payment === "Stripe"
+          _vm.account.payment == "Stripe"
             ? _c(
                 "div",
                 {
                   staticClass:
                     "bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm"
                 },
-                [_c("myStripe")],
+                [
+                  _c("myStripe", {
+                    attrs: { account: _vm.account, form: _vm.form }
+                  })
+                ],
                 1
               )
             : _c(
@@ -1589,7 +1620,12 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("myCart", {
-            attrs: { account: _vm.account, checkout: _vm.checkout }
+            attrs: {
+              account: _vm.account,
+              checkout: _vm.checkout,
+              user: _vm.user,
+              form: _vm.form
+            }
           })
         ],
         1
@@ -1814,7 +1850,15 @@ var render = function() {
                       staticClass: "mb-5",
                       attrs: { color: "white lighten-1" }
                     },
-                    [_c("myComplete", { attrs: { account: _vm.account } })],
+                    [
+                      _c("myComplete", {
+                        attrs: {
+                          account: _vm.account,
+                          user: _vm.user,
+                          form: _vm.form
+                        }
+                      })
+                    ],
                     1
                   ),
                   _vm._v(" "),
@@ -1883,19 +1927,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.form.card_no,
-                expression: "form.card_no"
+                value: _vm.card_data.card_no,
+                expression: "card_data.card_no"
               }
             ],
             staticClass: "form-control card-number",
             attrs: { autocomplete: "off", size: "20", type: "text" },
-            domProps: { value: _vm.form.card_no },
+            domProps: { value: _vm.card_data.card_no },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.form, "card_no", $event.target.value)
+                _vm.$set(_vm.card_data, "card_no", $event.target.value)
               }
             }
           })
@@ -1912,8 +1956,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.form.cvvNumber,
-              expression: "form.cvvNumber"
+              value: _vm.card_data.cvvNumber,
+              expression: "card_data.cvvNumber"
             }
           ],
           staticClass: "form-control card-cvc",
@@ -1923,13 +1967,13 @@ var render = function() {
             size: "4",
             type: "text"
           },
-          domProps: { value: _vm.form.cvvNumber },
+          domProps: { value: _vm.card_data.cvvNumber },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.form, "cvvNumber", $event.target.value)
+              _vm.$set(_vm.card_data, "cvvNumber", $event.target.value)
             }
           }
         })
@@ -1943,19 +1987,19 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.form.ccExpiryMonth,
-              expression: "form.ccExpiryMonth"
+              value: _vm.card_data.ccExpiryMonth,
+              expression: "card_data.ccExpiryMonth"
             }
           ],
           staticClass: "form-control card-expiry-month",
           attrs: { placeholder: "MM", size: "4", type: "text" },
-          domProps: { value: _vm.form.ccExpiryMonth },
+          domProps: { value: _vm.card_data.ccExpiryMonth },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.form, "ccExpiryMonth", $event.target.value)
+              _vm.$set(_vm.card_data, "ccExpiryMonth", $event.target.value)
             }
           }
         })
@@ -1969,19 +2013,19 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.form.ccExpiryYear,
-              expression: "form.ccExpiryYear"
+              value: _vm.card_data.ccExpiryYear,
+              expression: "card_data.ccExpiryYear"
             }
           ],
           staticClass: "form-control card-expiry-year",
           attrs: { placeholder: "YYYY", size: "4", type: "text" },
-          domProps: { value: _vm.form.ccExpiryYear },
+          domProps: { value: _vm.card_data.ccExpiryYear },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.form, "ccExpiryYear", $event.target.value)
+              _vm.$set(_vm.card_data, "ccExpiryYear", $event.target.value)
             }
           }
         }),
@@ -1991,26 +2035,39 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.form.amount,
-              expression: "form.amount"
+              value: _vm.card_data.amount,
+              expression: "card_data.amount"
             }
           ],
           staticClass: "form-control card-expiry-year",
           attrs: { placeholder: "YYYY", size: "4", type: "hidden", value: "3" },
-          domProps: { value: _vm.form.amount },
+          domProps: { value: _vm.card_data.amount },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.form, "amount", $event.target.value)
+              _vm.$set(_vm.card_data, "amount", $event.target.value)
             }
           }
         })
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "form-row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-12", staticStyle: { "margin-left": "-10px" } },
+        [
+          _c("div", { staticClass: "form-control total btn btn-primary" }, [
+            _vm._v("\n                Total:\n                "),
+            _c("span", { staticClass: "amount" }, [
+              _vm._v("$" + _vm._s(_vm.cart_total))
+            ])
+          ])
+        ]
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-row" }, [
       _c("div", { staticClass: "col-md-12 form-group" }, [
@@ -2026,25 +2083,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-row" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-12", staticStyle: { "margin-left": "-10px" } },
-        [
-          _c("div", { staticClass: "form-control total btn btn-primary" }, [
-            _vm._v("\n                Total:\n                "),
-            _c("span", { staticClass: "amount" }, [_vm._v("$3")])
-          ])
-        ]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

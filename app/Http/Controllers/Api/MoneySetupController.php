@@ -5,15 +5,10 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use URL;
-use Redirect;
-use Input;
-use App\User;
+use Cart;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
-use Stripe\Error\Card;
+use Exception;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
 
 class MoneySetupController extends Controller
 {
@@ -75,5 +70,14 @@ class MoneySetupController extends Controller
                 return redirect()->route('PaymentStripe');
             }
 
+    }
+
+    public function place_order(Request $request)
+    {
+        $cart_same = new SaleController;
+        $cart =  Cart::getContent();
+        $cart = Cart::getContent();
+        $address = ($request->account['shipping']) ? $request->account['shipping'] : $request->form;
+        return $cart_same->sale($cart, 'Cash on delivery', null, $address);
     }
 }

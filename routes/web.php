@@ -159,3 +159,4 @@ Route::post('variants_values/{id}', 'Api\SkuController@variants_values')->name('
 
 Route::get('PaymentStripe', 'Api\MoneySetupController@PaymentStripe')->name('PaymentStripe');
 Route::post('postPaymentStripe', 'Api\MoneySetupController@postPaymentStripe')->name('postPaymentStripe');
+Route::post('place_order', 'Api\MoneySetupController@place_order')->name('place_order');

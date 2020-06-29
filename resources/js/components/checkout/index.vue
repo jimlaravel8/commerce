@@ -22,7 +22,7 @@
             <v-stepper-step :complete="e6 > 3" step="3">Complete</v-stepper-step>
             <v-stepper-content step="3" style="background: #fff;">
                 <v-card color="white lighten-1" class="mb-5">
-                    <myComplete :account="account"></myComplete>
+                    <myComplete :account="account" :user="user" :form="form"></myComplete>
                 </v-card>
                 <!-- <v-btn color="primary" @click="finish">Place order</v-btn> -->
                 <v-btn flat @click="e6 = 2">Back</v-btn>

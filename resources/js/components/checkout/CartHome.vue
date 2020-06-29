@@ -24,7 +24,7 @@
                         <tr class="table-row" v-for="cart in carts" :key="cart.id">
                             <td class="column-1">
                                 <div class="cart-img-product b-rad-4 o-f-hidden" @click="flashCart(cart)">
-                                    <img :src="cart.product.image" alt="">
+                                    <img :src="cart.name.image" alt="">
                                 </div>
                             </td>
                             <td class="column-2">{{ cart.name.product_name }}</td>
@@ -61,8 +61,8 @@
 
             </div>
 
-            <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm" v-if="account.payment === 'Stripe'">
-                <myStripe />
+            <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm" v-if="account.payment == 'Stripe'">
+                <myStripe :account="account" :form="form" />
             </div>
 
             <!-- Total -->
@@ -107,7 +107,7 @@
 import myStripe from './stripe'
 export default {
     name: 'cart_home',
-    props: ['account'],
+    props: ['account', 'form', 'user'],
     components: {
         myStripe,
     },
@@ -128,19 +128,16 @@ export default {
             couponSessin: [],
             CartProduct: [],
             err_ms: '',
-            form: {
-                total: null
-            },
         };
     },
     methods: {
+
         getCart() {
-            axios.get("/getCart").then(response => {
-                eventBus.$emit("StoprogEvent");
-                this.carts = response.data;
-                this.loader = false;
-                eventBus.$emit("cartEvent", response.data);
-            });
+            var payload = {
+                model: 'getCart',
+                update: 'updateCartsList',
+            }
+            this.$store.dispatch('getItems', payload)
         },
         cash_delivery() {
             eventBus.$emit("progressEvent");

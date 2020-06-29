@@ -21,7 +21,7 @@
                 {{ account.phone }} <br>
             </v-flex>
         </v-layout>
-        <myCart :account="account" :checkout="checkout"></myCart>
+        <myCart :account="account" :checkout="checkout" :user="user" :form="form"></myCart>
     </v-container>
 </div>
 </template>
@@ -29,7 +29,7 @@
 <script>
 import myCart from './CartHome'
 export default {
-    props: ['account'],
+    props: ['account', 'checkout', 'form', 'user'],
     components: {
         myCart,
     },
