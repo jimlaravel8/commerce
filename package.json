@@ -32,7 +32,7 @@
     "dependencies": {
         "element-ui": "^2.13.2",
         "vue-router": "^3.3.4",
-        "vuetify": "^2.3.2",
+        "vuetify": "^2.6.10",
         "vue-avatar": "^2.1.8",
         "vue-avatar-component": "^1.2.6",
         "vue-fuse": "^2.2.0",
